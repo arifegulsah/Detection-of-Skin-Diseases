@@ -124,7 +124,7 @@ import os
 import os.path
 from PIL import Image
 
-f = r'C://Users/arife/Desktop/skindatadeneme/fotolar'
+f = r'../Test_Data/fotolar'
 for file in os.listdir(f):
     f_img = f+"/"+file
     img = Image.open(f_img)
@@ -135,7 +135,7 @@ for file in os.listdir(f):
 print(X[0].shape)
 print(X[0])
 
-datam2 = pd.read_csv("C:/Users/arife/Desktop/denemem.csv")
+datam2 = pd.read_csv("../Test_Data/fotolar/denemem.csv")
 
 X2 = get_image_data(datam2['Name'].values);
 y2 = datam2.iloc[:,1];
