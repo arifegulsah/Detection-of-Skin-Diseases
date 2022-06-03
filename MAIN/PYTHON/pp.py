@@ -12,7 +12,7 @@ import imageio
 #imageları numpy arraye çeviren fonksiyon
 def get_image_data(files):
     '''Returns np.ndarray of images read from the image data directory'''
-    IMAGE_FILE_ROOT = 'C:/Users/arife/Desktop/skindatadeneme/fotolar/' 
+    IMAGE_FILE_ROOT = '../Test_Data/fotolar/' 
     return np.asanyarray([imageio.imread("{}{}".format(IMAGE_FILE_ROOT, file)) for file in files])
 
 #arrayi verilem imagı çizdiren fonskiyon
@@ -28,7 +28,7 @@ def show_image(image, ax = plt, title = None, show_size = False):
         ax.tick_params(bottom = False, left = False, labelbottom = False, labelleft = False)
 
 
-datam = pd.read_csv("C:/Users/arife/Desktop/skindatadeneme/acnedeneme.csv");
+datam = pd.read_csv("../Test_Data/fotolar/acnedeneme.csv");
 print(datam.head(2))
 
 X = get_image_data(datam['Name'].values);
