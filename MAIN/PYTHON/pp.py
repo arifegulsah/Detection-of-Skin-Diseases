@@ -142,6 +142,13 @@ X2 = get_image_data(datam2['Name'].values);
 y2 = datam2.iloc[:,1];
 
 
+from sklearn import preprocessing
+le = preprocessing.LabelEncoder()
+y2 = le.fit_transform(y2)
+
+
+
+
 from sklearn.model_selection import train_test_split
 
 random_state = 42
@@ -153,15 +160,11 @@ Xtrain, Xtest, ytrain, ytest = train_test_split(X2, y2, test_size=0.20, shuffle=
 #Xtrain = np.delete(Xtrain, 0, 1)
 
 #Xtrain = pd.DataFrame(Xtrain)
-
+"""
 from sklearn import preprocessing
 le = preprocessing.LabelEncoder()
 ytrain = le.fit_transform(ytrain)
-
-
-
-
-ytest = le.fit_transform(ytest)
+ytest = le.fit_transform(ytest)"""
 
 
 
@@ -174,21 +177,23 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Dropout,BatchNormalization,Activation
 
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten
+from tensorflow.keras.optimizers import SGD
 
 
 model = Sequential()
-model.add(Conv2D(32,3,padding="same", activation="relu", input_shape=((461, 703, 3))))
+model.add(Conv2D(32,(3,3),padding="same", activation="relu", input_shape=((461, 703, 3))))
 model.add(MaxPool2D())
 
-model.add(Conv2D(32, 3, padding="same", activation="relu"))
-model.add(MaxPool2D())
+model.add(Conv2D(32, (3,3), padding="same", activation="relu"))
+model.add(MaxPool2D(pool_size=(2, 2)))
 
-model.add(Conv2D(64, 3, padding="same", activation="relu"))
+model.add(Conv2D(64, (3,3), padding="same", activation="relu"))
 model.add(MaxPool2D())
 model.add(Dropout(0.4))
 
 model.add(Flatten())
 model.add(Dense(128,activation="relu"))
+model.add(Dropout(0.5))
 model.add(Dense(2, activation="softmax"))
 
 model.summary()
@@ -196,7 +201,7 @@ model.summary()
 print(Xtrain[0].shape)
 
 
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=SGD(lr=0.000001, momentum=0.9), loss='binary_crossentropy', metrics=['accuracy'])
 
 
 
@@ -206,17 +211,98 @@ history = model.fit(Xtrain,
                 #validation_data=(Xtest, ytest),
                 shuffle=True,
                 verbose=1,
-                epochs=16)
+                epochs=32,
+                use_multiprocessing = True)
+
+pd.DataFrame(history.history).plot(figsize=(8,5))
+plt.show()
+
+
+from sklearn.model_selection import GridSearchCV
+
+# define the grid search parameters
+batch_size = [10, 20, 40, 60, 80, 100]
+epochs = [10, 50, 100]
+optimizer = ['SGD', 'RMSprop', 'Adagrad', 'Adadelta', 'Adam', 'Adamax', 'Nadam']
+learn_rate = [0.001, 0.01, 0.1, 0.2, 0.3]
+momentum = [0.0, 0.2, 0.4, 0.6, 0.8, 0.9]
+init_mode = ['uniform', 'lecun_uniform', 'normal', 'zero', 'glorot_normal', 'glorot_uniform', 'he_normal', 'he_uniform']
+activation = ['softmax', 'softplus', 'softsign', 'relu', 'tanh', 'sigmoid', 'hard_sigmoid', 'linear']
+weight_constraint = [1, 2, 3, 4, 5]
+dropout_rate = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+neurons = [1, 5, 10, 15, 20, 25, 30]
+
+param_grid = dict(batch_size=batch_size, epochs=epochs, optimizer=optimizer,init_mode=init_mode,dropout_rate=dropout_rate,neurons=neurons)
+grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1, cv=3)
+grid_result = grid.fit(Xtrain, ytrain)
+
+grid.score(Xtrain, ytrain)
+
+
+
+# summarize results
+print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print("%f (%f) with: %r" % (mean, stdev, param))
+    
+    
+
+
+
+
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+
+
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+
+
+
 
 score = model.evaluate(Xtest, ytest, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
 
+"""Test loss: 7.666234970092773
+Test accuracy: 0.5263158082962036
+optimizer='rmsprop',
+
+,SGD(lr=0.000001
+Test loss: 2.5285251140594482
+Test accuracy: 0.31578946113586426
+"""
 
 
 
 y_pred = model.predict(Xtest)
+
+
+maxpredicts = []
+for element in y_pred:
+    temp = np.argmax(element)
+    maxpredicts.append(temp)
+    
+y_pred = np.array(maxpredicts)    
+
+
+np.argmax(y_pred[7])
+
 print(y_pred)
 
 
