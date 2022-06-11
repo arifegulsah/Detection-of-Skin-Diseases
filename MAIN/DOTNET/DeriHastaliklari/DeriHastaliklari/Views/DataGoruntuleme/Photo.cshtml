@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    Layout = null;
+    string fullname = Context.Session.GetString("fullname");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
+    <link href="~/fotograf-yukle/styles/style.css" rel = "stylesheet" /> 
+
+    <title>Hoşgeldiniz</title>
+</head>
+
+<body>
+
+    <div class="container1 w-container">
+        <div class="div0">
+            <div class="divsol">
+                <div class="navbar">
+                    <img src="~/fotograf-yukle/images/logo.png" class="logo-icon">
+                </div>
+                <div class="kisiselbilgiler">
+                    <div class="text-block-2">Kişisel Bilgiler</div>
+                    <img src="~/fotograf-yukle/images/Rectangle-171.png" loading="lazy" alt="" class="settings-icon">
+                </div>
+            </div>
+            <div class="divkutu">
+                <div class="div1">
+                    <a href="#" class="button w-button">1. FOTOĞRAF YÜKLE</a>
+                    <a href="#" class="button w-button">2. HASTALIK DETAYLARI</a>
+                </div>
+                <div class="div2">
+                    <a href="#" class="button-3 w-button">FOTOĞRAF ÇEK</a>
+                    <div class="text-block">YA DA <br> </div>
+                    <a href="#" class="button-2 w-button">DOSYA YÜKLE</a>
+                </div>
+                <input class="button-4 w-button" type="button" name="" value="İLERİ">
+
+            </div>
+            <div class="divsag">
+                <img src="~/fotograf-yukle/images/logo.png" loading="lazy" alt="" class="image">
+                <div class="saglikbilgiler">
+                    <div class="text-block-2">Sağlık Durumu @fullname</div>
+                    <div class="text-block-2">Alerji Durumu</div>
+                    <div class="text-block-2">Aktif Kullanılan İlaç(lar)</div>
+                    <div class="text-block-2">Kronik Rahatsızlık:</div>
+                    <img src="~/fotograf-yukle/images/Rectangle-171.png" loading="lazy" alt="" class="image-2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

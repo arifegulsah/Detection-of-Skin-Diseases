@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
+        <link href="~/hasta-kayit-birlesik/styles/style.css" rel="stylesheet">
+
+	    <title>Hasta Kayıt</title>
+</head>
+<body class="body"><div class="containerust w-container">
+    <div class="divblock">
+        <img src="~/hasta-kayit-birlesik/images/logo.png" class="logo">
+        <div class="divsol">
+        
+        
+        <div class="div-center">
+            <div class="text-block-7">HASTA KAYIT</div>
+        <div class="divorta">
+            <div class="divust"><div class="text-block-8">KİŞİSEL BİLGİLER</div>
+    </div>
+    <div class="divalt">
+        <div class="divaltsol">
+            <div class="form-block w-form">
+                <form id="form-sag" name="wf-form-" data-name="" method="post" class="form-2" action="@Url.Action("PatientRegisterSave","Patient")">
+                <div class="div-block-3">
+                <div class="text-block-9">AD:</div>
+                <input type="text" class="text-field-2 w-input" maxlength="256" name="field" data-name="Field" placeholder="Adınız" id="field" required=""/></div>
+            <div class="div-block-3"><div class="text-block-10">SOYAD:</div>
+            <input type="text" class="text-field w-input" maxlength="256" name="field-4" data-name="Field 4" placeholder="Soyadınız" id="field-4" required=""/></div>
+            <div class="div-block-3">
+                <div class="text-block-11">T.C KİMLİK NUMARASI:</div>
+                <input type="text" class="text-field-3 w-input" maxlength="256" name="field-3" data-name="Field 3" placeholder="TC numaranız" id="field-3" required=""/></div>
+        </form>
+    </div>
+</div>
+<div class="divaltsag"><div class="w-form">
+            <form id="wf-form-" name="wf-form-" data-name="" method="post" class="form"><div class="div-block-2">
+                <div class="text-block-12">DOĞUM TARİHİ:</div><input type="text" class="text-field-6 w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Gün/Ay/Yıl" id="field-2" required=""/></div>
+                <div class="div-block-2"><div class="text-block-13">E-POSTA:</div>
+                <input type="text" class="text-field-4 text-field-2 w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="E-postanız" id="field-2" required=""/></div>
+                <div class="div-block-2"><div class="text-block-14">PAROLA:</div>
+                <input type="text" class="text-field-5 w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="İstediğiniz parola" id="field-2" required=""/></div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+</div>
+
+<div class="divorta2">
+    <div class="divust2">
+    <div class="text-block-8">SAĞLIK DURUMU</div>
+</div><div class="divalt2">
+    <div class="form-block w-form"><form id="form-sag" name="wf-form-" data-name="" method="get" class="form-2"><div class="div-block-3"><div class="text-block-9">Alerjiniz var mı?:</div>
+        <input type="text" class="text-field-alerji w-input" maxlength="256" name="field" data-name="Field" placeholder="Var ise ne alerjiniz olduğunu belirtiniz" id="field" required=""/></div>
+        <div class="div-block-3"><div class="text-block-10 ">Kronik rahatsızlığınız var mı?:</div>
+        <input type="text" class="text-field-kronik w-input" maxlength="256" name="field-4" data-name="Field 4" placeholder="Var ise hangi hastalık olduğunu belirtiniz" id="field-4" required=""/></div><div class="div-block-3">
+            <div class="text-block-11">Aktif olarak kullandığınız ilaç var mı?:</div>
+            <input type="text" class="text-field-ilac w-input" maxlength="256" name="field-3" data-name="Field 3" placeholder="Var ise ilaç(lar)ınızın ismini giriniz" id="field-3" required=""/></div>
+        
+</div></div>
+
+</div>
+
+    <input class= "btn" type = "submit" name="" value="KAYDET">
+
+</div>
+            <div class="divsag">
+                <img src="" loading="lazy" alt="" class="logo2"/></div>
+            </div>
+                
+                    
+                </div>
+                
+            </div>
+        
+        </body></html>

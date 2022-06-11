@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html> 
+  <head>
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href = "~/css/style.css" rel = "stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
+
+    <title>Hasta Giriş</title>
+</head>
+
+<body>
+    
+        <div class="navbar">
+            <img src="~/images/logo.png" class="logo">
+        </div>
+
+        <div class = "row" >
+            <form class= "#" method="post">
+            <div class="col-1">
+                
+                <h1>HASTA GİRİŞ</h1>
+            </div>
+
+            <div class="col-2">
+                <div class="rectangle">
+
+                    <div class="login-box">
+                        <div class="mail-box">
+                            </label> E-posta:</label>
+                            <input type="text" name="email" >
+                        </div>
+                        <div class="pass-box">
+                            </label>    Parola:</label>
+                            <input type="password" name="password" >
+                        </div>
+
+                    
+                        <input class= "btn" type = "submit" name="" value="GİRİŞ">
+                        <input class= "parolabtn"type = "button" name="" value="Parolamı Unuttum" onclick="location.href='@Url.Action("PForgotPassword","Patient")'">
+                        
+                       
+                        <input class= "kayitbtn"type = "button" name="" value="Kayıt Ol" onclick="location.href='@Url.Action("PatientRegister","Patient")'">
+
+                    </div>
+
+                </div>
+
+            </div>
+           </form>
+        </div>
+    
+</body>
+
+</html>
