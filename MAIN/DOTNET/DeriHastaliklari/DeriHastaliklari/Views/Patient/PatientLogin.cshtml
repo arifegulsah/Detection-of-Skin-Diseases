@@ -22,7 +22,7 @@
         </div>
 
         <div class = "row" >
-            <form class= "#" method="post">
+            <form class= "#" method="post" action="@Url.Action("PatientLogin2","Patient")">
             <div class="col-1">
                 
                 <h1>HASTA GİRİŞ</h1>
@@ -34,11 +34,12 @@
                     <div class="login-box">
                         <div class="mail-box">
                             </label> E-posta:</label>
-                            <input type="text" name="email" >
+                            <input type="email" name="email" required="" >
                         </div>
                         <div class="pass-box">
-                            </label>    Parola:</label>
+                            </label> Parola:</label>
                             <input type="password" name="password" >
+
                         </div>
 
                     

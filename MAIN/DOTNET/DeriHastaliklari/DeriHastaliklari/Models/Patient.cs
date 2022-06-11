@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DeriHastaliklari.Models
@@ -22,9 +23,8 @@ namespace DeriHastaliklari.Models
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
         public int TcNo { get; set; }
 
-
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public string bthDay { get; set; }
 

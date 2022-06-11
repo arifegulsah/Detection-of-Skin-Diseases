@@ -25,7 +25,24 @@ namespace DeriHastalikleri.Controllers
              //PatientController üzerine gelip Generate Constructor yap otomatik gelyor
             // _context = context;
          }*/
-        public IActionResult PatientLogin(string email, string password)
+        public IActionResult PatientLogin()
+        { 
+        //    var user = c.Patients.FirstOrDefault(x => x.Email == email && x.Password == password);
+        //    if (user != null)
+        //    {
+        //        HttpContext.Session.SetInt32("id", user.PatientId);
+        //        HttpContext.Session.SetString("fullname", user.Name + " " + user.Surname);
+        //        return RedirectToAction("Photo", "Patient");
+        //    }
+        //    else
+        //    {
+        //        ViewData["Message"] = "Böyle bir kullanıcı yok!";
+        //    }
+            return View(); // Redirect yapılabilir
+        }
+
+        [HttpPost]
+        public IActionResult PatientLogin2(string email, string password)
         {
             var user = c.Patients.FirstOrDefault(x => x.Email == email && x.Password == password);
             if (user != null)
@@ -34,14 +51,17 @@ namespace DeriHastalikleri.Controllers
                 HttpContext.Session.SetString("fullname", user.Name + " " + user.Surname);
                 return RedirectToAction("Photo", "Patient");
             }
+            else
+            {
+                ViewData["Message"] = "Böyle bir kullanıcı yok!";
+            }
 
-            return View(); // Redirect yapılabilir
+            return View("PatientLogin");
         }
-
-
         public IActionResult PatientRegister() { return View(); }
         public async Task<IActionResult> PatientRegisterSave(Patient p)
         {
+           
             await c.Patients.AddAsync(p);
             await c.SaveChangesAsync();
             return RedirectToAction("PatientLogin", "Patient");
@@ -118,28 +138,43 @@ namespace DeriHastalikleri.Controllers
             }
         }
 
-        
+
         public IActionResult Photo()
         {
-            return View();  
+            return View();
         }
 
 
 
         [HttpPost]
-        public IActionResult Photo(AddPhoto a)
+        public async Task<IActionResult> Photo(AddPhoto a)
         {
-            if(a.ImageURL != null)
+          
+            if (a.ImageURL != null)
             {
                 var extension = Path.GetExtension(a.ImageURL.FileName);
-                var newImagename = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/resimler/", newImagename);
-                var stream = new FileStream(location, FileMode.Create);
-                a.ImageURL.CopyTo(stream);
-               //tabloya eklemek için c ile işlem yapılması gerekiyor ama ne ?
+                if (extension.Contains("jpg") || extension.Contains("png") || extension.Contains("jpeg"))
+                {
+                    
+                    a.PatientId = HttpContext.Session.GetInt32("id").Value;
+                    c.AddPhotos.Add(a);
+                    await c.SaveChangesAsync();
+                    var newImagename = a.ImageId + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/resimler/", newImagename);
+                    var stream = new FileStream(location, FileMode.Create);
+                    a.ImageURL.CopyTo(stream);
+                }
+                else
+                {
+                    ViewData["warning"] = "Lütfen resim formatında seçim yapınız.";
+                    return View();
+                }
+                
+                
             }
-
+            // <img src="/wwwroot/resimler/3.jpg"
             return View();
+
         }
 
     }

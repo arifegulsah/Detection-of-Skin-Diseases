@@ -33,26 +33,26 @@
             </div>
             <div class="divkutu">
                 <div class="div1">
-                  
+                  @fullname
                 </div>
                 <form class= "form-group" action="Photo" method="post" enctype="multipart/form-data">
                     
                     @Html.Label("Kaşıntı durumu")
-                    @Html.TextBoxFor(x=>x.Itch, new { @class = "form-control"})
+                    @Html.TextBoxFor(x=>x.Itch, new { @class = "form-control" , @required  = "required"} )
                     <br />
                      @Html.Label("Acı durumu")
-                    @Html.TextBoxFor(x=>x.Pain, new { @class = "form-control"})
+                    @Html.TextBoxFor(x=>x.Pain, new { @class = "form-control", @required  = "required"})
                     <br />
 
                      @Html.Label("Devam ediyor mu")
-                    @Html.TextBoxFor(x=>x.Cont, new { @class = "form-control"})
+                    @Html.TextBoxFor(x=>x.Cont, new { @class = "form-control", @required  = "required"})
                     <br />
                     @Html.Label("ek bilgi")
                     @Html.TextBoxFor(x=>x.Additional, new { @class = "form-control"})
                     <br />
 
-                    <input type="file" name = "ImageURL" class="button-2 w-button"/>
-
+                    <input type="file" name = "ImageURL" class="button-2 w-button" accept="image/png, image/jpeg, image/jpg"/>
+                    <span class="alert-danger" style="color: red;">@ViewData["warning"]</span>
                 
                 <input class="button-4 w-button" type="submit" name="" value="Kaydet">
                 </form>
@@ -60,7 +60,7 @@
             <div class="divsag">
                 <img src="~/fotograf-yukle/images/logo.png" loading="lazy" alt="" class="image">
                 <div class="saglikbilgiler">
-                    <div class="text-block-2">Sağlık Durumu @fullname</div>
+                    <div class="text-block-2">Sağlık Durumu </div>
                     <div class="text-block-2">Alerji Durumu</div>
                     <div class="text-block-2">Aktif Kullanılan İlaç(lar)</div>
                     <div class="text-block-2">Kronik Rahatsızlık:</div>
