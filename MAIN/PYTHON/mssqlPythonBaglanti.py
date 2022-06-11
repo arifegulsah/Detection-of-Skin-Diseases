@@ -13,28 +13,35 @@ import pypyodbc
 #Windows Authentication İle Bağlantı
 db = pypyodbc.connect(
     'Driver={SQL Server};'
-    'Server=DESKTOP-TVM6RQR\SQLEXPRESS;'
+    'Server=DESKTOP-UNSRF7H\\SQLEXPRESS;'
     'Database=DeriHastalik;'
     'Trusted_Connection=True;'
 )
 
+"""
 #SQL Server Authentication İle Bağlantı
 db = pypyodbc.connect(
     'Driver={SQL Server};'
-    'Server=DESKTOP-TVM6RQR\SQLEXPRESS;'
+    'Server=DESKTOP-UNSRF7H\\SQLEXPRESS;'
     'Database=DeriHastalik;'
     'UID=kubra;'
     'PWD=12345678;'
 )
+"""
 
 imlec = db.cursor()
 
 
-imlec.execute('SELECT * FROM Kisiler')
+imlec.execute('SELECT * FROM Doctors')
 
 #diziyi değişkende tutuyoruz.
 #!! Tek bir satır çekmek için fetchall() yerine fetchone() fonksiyonunu kullanırız.
 kullanicilar = imlec.fetchall()
+
+imlec.execute('''INSERT INTO Doctors(Username, Password) VALUES('doktor2', '123')''')
+db.commit()
+
+imlec.execute('''INSERT INTO Doctors VALUES('doktor3', '123')''')
 
 #yazdırmak istersek
 for i in kullanicilar:
@@ -42,14 +49,12 @@ for i in kullanicilar:
 
 
 """
-
 #INSERT ISLEMI
 komut = 'INSERT INTO Kisiler VALUES(?,?,?)'
 veriler = ('Özlem','ÖZ',25)
 
 sonuc = imlec.execute(komut,veriler)
 db.commit()
-
 """
 
 #UPDATE ISLEMI
