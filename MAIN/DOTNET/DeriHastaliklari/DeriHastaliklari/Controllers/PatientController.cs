@@ -27,18 +27,18 @@ namespace DeriHastalikleri.Controllers
          }*/
         public IActionResult PatientLogin()
         { 
-        //    var user = c.Patients.FirstOrDefault(x => x.Email == email && x.Password == password);
-        //    if (user != null)
-        //    {
-        //        HttpContext.Session.SetInt32("id", user.PatientId);
-        //        HttpContext.Session.SetString("fullname", user.Name + " " + user.Surname);
-        //        return RedirectToAction("Photo", "Patient");
-        //    }
-        //    else
-        //    {
-        //        ViewData["Message"] = "Böyle bir kullanıcı yok!";
-        //    }
-            return View(); // Redirect yapılabilir
+           // var user = c.Patients.FirstOrDefault(x => x.Email == email && x.Password == password);
+           //if (user != null)
+           //{
+           //     HttpContext.Session.SetInt32("id", user.PatientId);
+           //  HttpContext.Session.SetString("fullname", user.Name + " " + user.Surname);
+           //    return RedirectToAction("Photo", "Patient");
+           // }
+           //else
+           // {
+           //     ViewData["Message"] = "Böyle bir kullanıcı yok!";
+           // }
+           return View(); // Redirect yapılabilir
         }
 
         [HttpPost]
@@ -82,7 +82,7 @@ namespace DeriHastalikleri.Controllers
             var bilgiler = c.Doctors.FirstOrDefault(x => x.Username == request.Username && x.Password == request.Password);
             if (bilgiler != null)
             {
-                //kullanıcı bilgilerini tutar 
+                //kullanıcı bilgilerini tutar
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, request.Username)
