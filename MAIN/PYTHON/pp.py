@@ -12,7 +12,7 @@ import imageio
 #imageları numpy arraye çeviren fonksiyon
 def get_image_data(files):
     '''Returns np.ndarray of images read from the image data directory'''
-    IMAGE_FILE_ROOT = '../Test_Data/fotolar/' 
+    IMAGE_FILE_ROOT = '../Test_Data/photos/' 
     return np.asanyarray([imageio.imread("{}{}".format(IMAGE_FILE_ROOT, file)) for file in files])
 
 #arrayi verilem imagı çizdiren fonskiyon
@@ -28,8 +28,11 @@ def show_image(image, ax = plt, title = None, show_size = False):
         ax.tick_params(bottom = False, left = False, labelbottom = False, labelleft = False)
 
 
-datam = pd.read_csv("../Test_Data/acnedeneme.csv");
+datam = pd.read_csv("../Test_Data/test.csv");
 print(datam.head(2))
+
+
+
 
 X = get_image_data(datam['Name'].values);
 y = datam.iloc[:,1];
@@ -125,18 +128,20 @@ import os
 import os.path
 from PIL import Image
 
-f = r'../Test_Data/fotolar'
+f = r'../Test_Data/photos'
 for file in os.listdir(f):
     f_img = f+"/"+file
     img = Image.open(f_img)
-    img = img.resize((IDEAL_WIDTH, IDEAL_HEIGHT))
+    img = img.resize((151, 128))
+    #img = img.resize((IDEAL_WIDTH, IDEAL_HEIGHT))
+    img = img.convert('RGB')
     img.save(f_img)
 
 
 print(X[0].shape)
 print(X[0])
 
-datam2 = pd.read_csv("../Test_Data/denemem.csv")
+datam2 = pd.read_csv("../Test_Data/test.csv")
 
 X2 = get_image_data(datam2['Name'].values);
 y2 = datam2.iloc[:,1];
@@ -147,7 +152,7 @@ le = preprocessing.LabelEncoder()
 y2 = le.fit_transform(y2)
 
 
-
+print(X2[0].shape)
 
 from sklearn.model_selection import train_test_split
 
@@ -176,33 +181,53 @@ ytest = le.fit_transform(ytest)"""
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Dropout,BatchNormalization,Activation
 
-from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, MaxPooling2D
 from tensorflow.keras.optimizers import SGD
 
 
 model = Sequential()
-model.add(Conv2D(32,(3,3),padding="same", activation="relu", input_shape=((461, 703, 3))))
-model.add(MaxPool2D())
+model.add(Conv2D(256,(3,3),padding="same", activation="relu", input_shape=((128, 151, 3))))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(BatchNormalization())
 
-model.add(Conv2D(32, (3,3), padding="same", activation="relu"))
-model.add(MaxPool2D(pool_size=(2, 2)))
+#model.add(Dropout(0.2))
 
-model.add(Conv2D(64, (3,3), padding="same", activation="relu"))
-model.add(MaxPool2D())
-model.add(Dropout(0.4))
+model.add(Conv2D(128, (3,3), padding="same", activation="relu"))
+model.add(Conv2D(128, (3,3), padding="same", activation="relu"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(BatchNormalization())
+
+#model.add(Dropout(0.2))
+
+model.add(Conv2D(256, (3,3), padding="same", activation="relu"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(BatchNormalization())
+model.add(Dropout(0.2))
+
+#model.add(Dropout(0.4))
 
 model.add(Flatten())
+model.add(Dense(256,activation="relu"))
+#model.add(Dropout(0.2))
 model.add(Dense(128,activation="relu"))
-model.add(Dropout(0.5))
-model.add(Dense(3, activation="softmax"))
+#model.add(Dropout(0.4))
+#model.add(Dense(64,activation="relu"))
+model.add(Dropout(0.3))
+
+model.add(Dense(4, activation="softmax"))
 
 model.summary()
 
-print(Xtrain[0].shape)
+print(Xtrain[1].shape)
 
 
 model.compile(optimizer=SGD(lr=0.000001, momentum=0.09), loss='binary_crossentropy', metrics=['accuracy'])
 
+#model.compile(loss='binary_crossentropy', optimizer='adam', metrics = ['accuracy'])
+
+
+#Xtrain = np.asarray(Xtrain).astype('float32')
+#ytrain = np.asarray(ytrain)
 
 
 history = model.fit(Xtrain, 
@@ -211,7 +236,7 @@ history = model.fit(Xtrain,
                 #validation_data=(Xtest, ytest),
                 shuffle=True,
                 verbose=1,
-                epochs=30,
+                epochs=50,
                 use_multiprocessing = True)
 
 pd.DataFrame(history.history).plot(figsize=(8,5))
@@ -256,12 +281,33 @@ print(classification_report(ytest, y_pred))
 
 
 
+model2 = Sequential()
+model2.add(Conv2D(32, kernel_size = (3, 3), activation='relu', input_shape=(128, 151, 3)))
+model2.add(MaxPooling2D(pool_size=(2,2)))
+model2.add(BatchNormalization())
+model2.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
+model2.add(MaxPooling2D(pool_size=(2,2)))
+model2.add(BatchNormalization())
+model2.add(Conv2D(96, kernel_size=(3,3), activation='relu'))
+model2.add(MaxPooling2D(pool_size=(2,2)))
+model2.add(BatchNormalization())
+model2.add(Conv2D(96, kernel_size=(3,3), activation='relu'))
+model2.add(MaxPooling2D(pool_size=(2,2)))
+model2.add(BatchNormalization())
+model2.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
+model2.add(MaxPooling2D(pool_size=(2,2)))
+model2.add(BatchNormalization())
+model2.add(Dropout(0.2))
+model2.add(Flatten())
+model2.add(Dense(256, activation='relu'))
+model2.add(Dropout(0.2))
+model2.add(Dense(128, activation='relu'))
+model2.add(Dense(4, activation = 'softmax'))
 
 
+model2.compile(loss='binary_crossentropy', optimizer='adam', metrics = ['accuracy'])
 
-
-
-
+model2.fit(Xtrain,ytrain, batch_size = 50, epochs = 2, verbose = 1)
 
 
 
