@@ -177,6 +177,8 @@ ytest = le.fit_transform(ytest)"""
 
 
 
+import tensorflow as tf
+import keras
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Dropout,BatchNormalization,Activation
@@ -186,7 +188,7 @@ from tensorflow.keras.optimizers import SGD
 
 
 model = Sequential()
-model.add(Conv2D(256,(3,3),padding="same", activation="relu", input_shape=((64, 76, 3))))
+model.add(Conv2D(256,(3,3),padding="same", activation="relu", input_shape=((128, 151, 3))))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(BatchNormalization())
 
@@ -220,7 +222,7 @@ model.summary()
 
 print(Xtrain[1].shape)
 
-
+model = tf.keras.Sequential([tf.keras.layers.Dense(4, input_shape=[1])])
 model.compile(optimizer=SGD(lr=0.000001, momentum=0.09), loss='binary_crossentropy', metrics=['accuracy'])
 
 #model.compile(loss='binary_crossentropy', optimizer='adam', metrics = ['accuracy'])
@@ -229,6 +231,17 @@ model.compile(optimizer=SGD(lr=0.000001, momentum=0.09), loss='binary_crossentro
 #Xtrain = np.asarray(Xtrain).astype('float32')
 #ytrain = np.asarray(ytrain)
 
+# Our vectorized labels
+Xtrain = np.asarray(Xtrain).astype('float32').reshape((-1,1))
+ytrain = np.asarray(ytrain).astype('float32').reshape((-1,1))
+Xtest = np.asarray(Xtrain).astype('float32').reshape((-1,1))
+ytest = np.asarray(ytrain).astype('float32').reshape((-1,1))
+
+#ytrain = Xtrain.reshape(560, 128, 151, 3)
+
+
+
+#print( Xtrain.shape, ytrain.shape ) # <- updated line
 
 history = model.fit(Xtrain, 
                 ytrain,
@@ -236,7 +249,7 @@ history = model.fit(Xtrain,
                 #validation_data=(Xtest, ytest),
                 shuffle=True,
                 verbose=1,
-                epochs=20,
+                epochs=50,
                 use_multiprocessing = True)
 
 pd.DataFrame(history.history).plot(figsize=(8,5))
@@ -263,7 +276,7 @@ for element in y_pred:
 y_pred = np.array(maxpredicts)    
 
 
-np.argmax(y_pred[7])
+np.argmax(y_pred[7]) 
 
 print(y_pred)
 
