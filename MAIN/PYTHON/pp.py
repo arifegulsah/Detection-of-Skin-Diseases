@@ -236,7 +236,7 @@ history = model.fit(Xtrain,
                 #validation_data=(Xtest, ytest),
                 shuffle=True,
                 verbose=1,
-                epochs=50,
+                epochs=250,
                 use_multiprocessing = True)
 
 pd.DataFrame(history.history).plot(figsize=(8,5))
