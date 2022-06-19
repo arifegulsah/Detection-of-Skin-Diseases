@@ -21,7 +21,7 @@ namespace DeriHastaliklari.Models
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
-        public int TcNo { get; set; }
+        public string TcNo { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
@@ -37,13 +37,13 @@ namespace DeriHastaliklari.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
-        public string Allergy { get; set; }
+        public bool Allergy { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
-        public string Medicine { get; set; }
+        public bool Medicine { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
-        public string Disease { get; set; }
+        public bool Disease { get; set; }
 
         public AddPhoto AddPhoto { get; set; } //entity olarak ekleniyor.
 

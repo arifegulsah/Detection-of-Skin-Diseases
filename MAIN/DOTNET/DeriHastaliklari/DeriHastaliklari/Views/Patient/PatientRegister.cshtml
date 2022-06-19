@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DeriHastaliklari.Models.Patient
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -28,8 +29,8 @@
                         </div>
                         <div class="divalt">
                             <form id="form-sag" name="wf-form-" data-name="" method="post" class="form-2" action="@Url.Action("PatientRegisterSave","Patient")">
-                            <div class="divaltsol">
-                                <div class="form-block w-form">
+                                <div class="divaltsol">
+                                    <div class="form-block w-form">
                                         <div class="div-block-3">
                                             <div class="text-block-9">AD:</div>
                                             <input type="text" class="text-field-2 w-input" maxlength="256" name="Name" data-name="Field" placeholder="Adınız" id="field" required="" />
@@ -42,14 +43,9 @@
                                             <div class="text-block-11">T.C KİMLİK NUMARASI:</div>
                                             <input type="text" class="text-field-3 w-input" maxlength="11" minlength="11" name="TcNo" data-name="Field 3" placeholder="TC numaranız" id="field-3" required="" />
                                         </div>
-                                </div>
-                            </div>
-                            <div class="divaltsag">
-                                <div class="w-form">
-                                   
                                         <div class="div-block-2">
                                             <div class="text-block-12">DOĞUM TARİHİ:</div><input type="date" class="text-field-6 w-input" name="bthDay" data-name="Field 2" placeholder="Gün/Ay/Yıl" id="field-2" required="" />
-                                             
+
                                         </div>
                                         <div class="div-block-2">
                                             <div class="text-block-13">E-POSTA:</div>
@@ -59,36 +55,64 @@
                                             <div class="text-block-14">PAROLA:</div>
                                             <input type="password" class="text-field-5 w-input" maxlength="256" name="Password" data-name="Field 2" placeholder="İstediğiniz parola" id="field-2" required="" />
                                         </div>
-                                   
+
+
+                                    </div>
                                 </div>
-                            </div>
+                             @*   <div class="divaltsag">
+                                    <div class="w-form">
 
-                       
+                                        <div class="div-block-2">
+                                            <div class="text-block-12">DOĞUM TARİHİ:</div><input type="date" class="text-field-6 w-input" name="bthDay" data-name="Field 2" placeholder="Gün/Ay/Yıl" id="field-2" required="" />
 
-                    <div class="divorta2">
-                        <div class="divust2">
-                            <div class="text-block-8">SAĞLIK DURUMU</div>
-                        </div><div class="divalt2">
-                            <div class="form-block w-form">
-                                <div class="div-block-3">
-                                    <div class="text-block-9">Alerjiniz var mı?:</div>
-                                    <input type="text" class="text-field-alerji w-input" maxlength="256" name="Allergy" data-name="Field" placeholder="Var ise ne alerjiniz olduğunu belirtiniz" id="field" required="" />
+                                        </div>
+                                        <div class="div-block-2">
+                                            <div class="text-block-13">E-POSTA:</div>
+                                            <input type="email" class="text-field-4 text-field-2 w-input" maxlength="256" name="Email" data-name="Field 2" placeholder="E-postanız" id="field-2" required="" />
+                                        </div>
+                                        <div class="div-block-2">
+                                            <div class="text-block-14">PAROLA:</div>
+                                            <input type="password" class="text-field-5 w-input" maxlength="256" name="Password" data-name="Field 2" placeholder="İstediğiniz parola" id="field-2" required="" />
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="div-block-3">
-                                    <div class="text-block-10 ">Kronik rahatsızlığınız var mı?:</div>
-                                    <input type="text" class="text-field-kronik w-input" maxlength="256" name="Disease" data-name="Field 4" placeholder="Var ise hangi hastalık olduğunu belirtiniz" id="field-4" required="" />
-                                </div><div class="div-block-3">
-                                    <div class="text-block-11">Aktif olarak kullandığınız ilaç var mı?:</div>
-                                    <input type="text" class="text-field-ilac w-input" maxlength="256" name="Medicine" data-name="Field 3" placeholder="Var ise ilaç(lar)ınızın ismini giriniz" id="field-3" required="" />
+*@
+
+
+                                <div class="divorta2">
+                                    <div class="divust2">
+                                        <div class="text-block-8">SAĞLIK DURUMU</div>
+                                    </div><div class="divalt2">
+                                        <div class="form-block w-form">
+                                            <div class="div-block-3">
+                                                <div class="text-block-9">Alerjiniz var mı?:</div>
+                                                <select asp-for="Allergy" style="width:150px"; style="border-radius:12px" >
+                                                    <option value=false>Yok</option>
+                                                    <option value=true>Var</option>
+                                                </select>
+                                            </div>
+                                            <div class="div-block-3">
+                                                <div class="text-block-10 ">Kronik rahatsızlığınız var mı?:</div>
+                                                <select asp-for="Disease"  style="width:150px"; border-radius:12px;>
+                                                    <option value=false>Yok</option>
+                                                    <option value=true>Var</option>
+                                                </select>
+                                            </div><div class="div-block-3">
+                                                <div class="text-block-11">Aktif olarak kullandığınız ilaç var mı?:</div>
+                                                <select asp-for="Medicine"  style="width:150px"; border-radius:12px;>
+                                                    <option value=false>Yok</option>
+                                                    <option value=true>Var</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                 </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <input class="btn" type="submit" name="" value="KAYDET">
-                    </form>
+                                <span class="alert-danger" style="color: red;">@ViewData["Message"]</span>
+                                <input class="btn" type="submit" name="" value="KAYDET">
+                            </form>
                         </div>
 
                     </div>

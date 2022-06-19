@@ -363,6 +363,7 @@
     margin-top: 60px; 
     margin-right: 70px; 
     margin-left: 70px; 
+    padding-top: 120px;
     -webkit-box-orient: vertical; 
     -webkit-box-direction: normal; 
     -webkit-flex-direction: column; 
@@ -376,11 +377,39 @@
     -webkit-flex: 0 auto; 
     -ms-flex: 0 auto; 
     flex: 0 auto; 
-    border-radius: 10px; 
+    border-radius:40px; 
     background-color: #ededed; 
     color: #000;
+
+
     
-} 
+}
+
+.col-1 {
+    flex-basis: 40%;
+    position: relative;
+    margin-left: 5px;
+    margin-top: 5px;
+    background-color: #ededed;
+}
+
+h1 {
+    font-size: 36px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #733878;
+    
+
+}
+
+.divickutu {
+    padding-top: 40px;
+    border-radius: 40px;
+    background-color: #ccc1de;
+
+
+}
 .divsag { 
     display: block; 
     line-height: 0px;

@@ -44,12 +44,12 @@ namespace DeriHastalikleri.Controllers
         [HttpPost]
         public IActionResult PatientLogin2(string email, string password)
         {
-            var user = c.Patients.FirstOrDefault(x => x.Email == email && x.Password == password);
-            if (user != null)
+            var user = c.Patients.Where(x => x.Email == email && x.Password == password).ToList();
+            if (user.Count>0)
             {
-                HttpContext.Session.SetInt32("id", user.PatientId);
-                HttpContext.Session.SetString("fullname", user.Name + " " + user.Surname);
-                return RedirectToAction("Photo", "Patient");
+                HttpContext.Session.SetInt32("id", user[0].PatientId);
+                HttpContext.Session.SetString("fullname", user[0].Name + " " + user[0].Surname);
+                return View("Photo", user);
             }
             else
             {
@@ -61,12 +61,26 @@ namespace DeriHastalikleri.Controllers
         public IActionResult PatientRegister() { return View(); }
         public async Task<IActionResult> PatientRegisterSave(Patient p)
         {
-           
+            var kontrol = c.Patients.Any(x => x.Email == p.Email);
+           if (kontrol == true)
+            {
+                ViewData["Message"] = "Lütfen başka bir mail adresi kullanın!";
+                return View("PatientRegister");
+            }
+
             await c.Patients.AddAsync(p);
             await c.SaveChangesAsync();
             return RedirectToAction("PatientLogin", "Patient");
 
         }
+
+        public IActionResult PatientLogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index","Home");
+
+        }
+
 
         [HttpGet]
         public IActionResult DoctorLogin()
@@ -94,9 +108,16 @@ namespace DeriHastalikleri.Controllers
 
                 return RedirectToAction("Index", "DataGoruntuleme");
 
-            }
-
+            } 
+     
+            ViewData["warning"] = "Lütfen bilgilerinizi kontrol edin";
             return View();
+        }
+
+        public async Task<IActionResult> DoctorLogout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -170,10 +191,10 @@ namespace DeriHastalikleri.Controllers
                     return View();
                 }
                 
-                
             }
-            // <img src="/wwwroot/resimler/3.jpg"
-            return View();
+            var model =c.Patients.Where(x=>x.PatientId == a.PatientId).ToList();
+            return View(model);
+
 
         }
 

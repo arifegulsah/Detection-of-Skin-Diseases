@@ -12,13 +12,13 @@ namespace DeriHastaliklari.Models
         public IFormFile ImageURL { get; set; }
 
         [Required(ErrorMessage = "Lütfen bir seçim yapınız.")]
-        public string Itch { get; set; }
+        public bool Itch { get; set; }
 
         [Required(ErrorMessage = "Lütfen bir seçim yapınız.")]
-        public string Pain { get; set; }
+        public bool Pain { get; set; }
 
         [Required(ErrorMessage = "Lütfen bir seçim yapınız.")]
-        public string Cont { get; set; }
+        public bool Cont { get; set; }
         public string Additional { get; set; }
 
         [ForeignKey("Patient")]

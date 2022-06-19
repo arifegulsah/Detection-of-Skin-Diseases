@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http;
-@model DeriHastaliklari.Models.AddPhoto;
+@model List<Patient>
 
 @{
     Layout = null;
-    string fullname = Context.Session.GetString("fullname");
+  
 }
 <!DOCTYPE html>
 <html>
@@ -24,31 +24,65 @@
         <div class="div0">
             <div class="divsol">
                 <div class="navbar">
+                    @*<img src="~/fotograf-yukle/images/logo.png" class="logo-icon">*@
+                    <a asp-controller="Patient" asp-action="PatientLogOut">
                     <img src="~/fotograf-yukle/images/logo.png" class="logo-icon">
+                    </a> 
                 </div>
                 <div class="kisiselbilgiler">
                     <div class="text-block-2">Kişisel Bilgiler</div>
+
+                        @foreach(var item in Model)
+                        {
+                            <div class="text-block-2">İsim</div>
+                             <td>@item.Name</td>
+                            <div class="text-block-2">Soyisim</div>
+                        <td>@item.Surname</td>
+                            <div class="text-block-2">T.C.</div>
+
+                            <td>@item.TcNo</td>
+                         
+                        }
+
+                   
                     <img src="~/fotograf-yukle/images/Rectangle-171.png" loading="lazy" alt="" class="settings-icon">
+
                 </div>
             </div>
+            
             <div class="divkutu">
-                <div class="div1">
-                  @fullname
-                </div>
+
+                    <div class="col-1">
+                        <h1>Hastalık Detayları</h1>
+                    </div>
+
+                <div class="divickutu">
                 <form class= "form-group" action="Photo" method="post" enctype="multipart/form-data">
                     
-                    @Html.Label("Kaşıntı durumu")
-                    @Html.TextBoxFor(x=>x.Itch, new { @class = "form-control" , @required  = "required"} )
+                    @Html.Label("Kaşıntınız var mı?")
+                    <br/>
+                    <select name="Itch" id="Itch"" style="width:150px"; >
+                                                    <option value=false>Yok</option>
+                                                    <option value=true>Var</option>
+                                                </select>
                     <br />
-                     @Html.Label("Acı durumu")
-                    @Html.TextBoxFor(x=>x.Pain, new { @class = "form-control", @required  = "required"})
+                     @Html.Label("Acı durumu nedir?")
+                     <br/>
+                    <select name="Pain" id="Pain" style="width:150px"; border-radius:12px;>
+                                                    <option value=false>Yok</option>
+                                                    <option value=true>Var</option>
+                                                </select>
                     <br />
 
-                     @Html.Label("Devam ediyor mu")
-                    @Html.TextBoxFor(x=>x.Cont, new { @class = "form-control", @required  = "required"})
+                     @Html.Label("Hiç şiş oldu mu?")
+                     <br/>
+                    <select name="Cont" id="Cont" style="width:150px"; border-radius:12px;>
+                                                    <option value=false>Hayır</option>
+                                                    <option value=true>Evet</option>
+                                                </select>
                     <br />
-                    @Html.Label("ek bilgi")
-                    @Html.TextBoxFor(x=>x.Additional, new { @class = "form-control"})
+                    @Html.Label("Ek bilgi")
+                    @Html.TextBoxFor(x=>x, new { @class = "form-control", @name="Additional", @id="Additional"})
                     <br />
 
                     <input type="file" name = "ImageURL" class="button-2 w-button" accept="image/png, image/jpeg, image/jpg"/>
@@ -56,14 +90,41 @@
                 
                 <input class="button-4 w-button" type="submit" name="" value="Kaydet">
                 </form>
+                </div>
             </div>
             <div class="divsag">
                 <img src="~/fotograf-yukle/images/logo.png" loading="lazy" alt="" class="image">
                 <div class="saglikbilgiler">
                     <div class="text-block-2">Sağlık Durumu </div>
-                    <div class="text-block-2">Alerji Durumu</div>
-                    <div class="text-block-2">Aktif Kullanılan İlaç(lar)</div>
-                    <div class="text-block-2">Kronik Rahatsızlık:</div>
+                     @foreach(var item in Model)
+                        {
+                            <div class="text-block-2">Alerji</div>
+                            if(@item.Allergy==false){
+                            <td>Hayır</td>
+                        }
+                        else
+                        {
+                            <td>Evet</td>
+                        }
+                        <div class="text-block-2">Aktif Kullanılan ilaçlar</div>
+                           if(@item.Medicine==false){
+                            <td>Hayır</td>
+                        }
+                        else
+                        {
+                            <td>Evet</td>
+                        }
+                        
+                            <div class="text-block-2">Kronik Rahatsızlık</div>
+                               if(@item.Disease==false){
+                            <td>Hayır</td>
+                        }
+                        else
+                        {
+                            <td>Evet</td>
+                        }
+                          }
+                        
                     <img src="~/fotograf-yukle/images/Rectangle-171.png" loading="lazy" alt="" class="image-2">
                 </div>
             </div>

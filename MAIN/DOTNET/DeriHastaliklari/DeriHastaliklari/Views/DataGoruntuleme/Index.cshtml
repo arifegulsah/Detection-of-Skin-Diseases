@@ -1,16 +1,140 @@
-﻿
+﻿@model List<PatientList>;
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DataGoruntuleme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
+    <link href="~/hasta-kayit-1/styles/style.css" rel="stylesheet">
+
+    <title>Hasta Görüntüleme</title>
 </head>
-<body>
-    
+<body class="body">
+    <div class="containerust w-container">
+        <div class="divblock">
+             <a asp-controller="Patient" asp-action="DoctorLogout">
+                    <img src="~/fotograf-yukle/images/logo.png" class="logo-icon">
+                    </a> 
+            <div class="divsol">
+
+
+                <div class="div-center">
+                    <div class="text-block-7">HASTA GÖRÜNTÜLE</div>
+                    <div class="divorta">
+                        <div class="divust">
+                            <div class="text-block-8">HASTA BİLGİLER</div>
+                        </div>
+                        <div class="divalt">
+                            <form id="form-sag" name="wf-form-" data-name="" method="post" class="form-2" action="@Url.Action("PatientSearch","DataGoruntuleme")">
+                                <div class="divaltsol">
+                                    <div class="form-block w-form">
+                                        <div class="div-block-3">
+                                            <div class="text-block-9">AD:</div>
+                                            <input type="text" class="text-field-2 w-input" maxlength="256" name="Name" data-name="Field" placeholder="Adınız" id="field" />
+                                        </div>
+                                        <div class="div-block-3">
+                                            <div class="text-block-10">SOYAD:</div>
+                                            <input type="text" class="text-field w-input" maxlength="256" name="Surname" data-name="Field 4" placeholder="Soyadınız" id="field-4" />
+                                        </div>
+                                        <div class="div-block-3">
+                                            <div class="text-block-11">T.C KİMLİK NUMARASI:</div>
+                                            <input type="text" class="text-field-3 w-input" maxlength="11" minlength="11" name="TcNo" data-name="Field 3" placeholder="TC numaranız" id="field-3" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="divaltsag">
+
+                                    <div class="form-block w-form">
+                                        <div class="div-block-3">
+                                            <div class="text-block-9">ALERJİ:</div>
+                                            <select name="Allergy" id="Allergy" style="width:150px" ;>
+                                                <option value="0">Seçiniz</option>
+                                                <option value="false">Yok</option>
+                                                <option value="true">Var</option>
+                                            </select>
+                                        </div>
+                                        <div class="div-block-3">
+                                            <div class="text-block-10">KRONİK HASTALIK:</div>
+                                            <select name="Disease" id="Allergy" style="width:150px" ;>
+                                                <option value="0">Seçiniz</option>
+                                                <option value="false">Yok</option>
+                                                <option value="true">Var</option>
+                                            </select>
+                                        </div>
+                                        <div class="div-block-3">
+                                            <div class="text-block-10">İLAÇLAR:</div>
+                                            <select name="Medicine" id="Medicine" style="width:150px" ;>
+                                                <option value="0">Seçiniz</option>
+                                                <option value="false">Yok</option>
+                                                <option value="true">Var</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <input class="btn" type="submit" name="" value="ARA">
+
+
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            @if (Model.Count > 0)
+                            {
+                                <table table border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>TC</th>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>İlaç Kullanıyor mu?</th>
+                                            <th>Alerji var mı?</th>
+                                            <th>Kronik Hastalık var mı?</th>
+                                            <th>Ağrı var mı?</th>
+                                            <th>Acı var mı?</th>
+                                            <th>Şiş var mı?</th>
+                                            <th>Ek Bilgiler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.TcNo</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Surname</td>
+                                                <td>@item.MedicineText</td>
+                                                <td>@item.AllergyText</td>
+                                                <td>@item.DiseaseText</td>
+                                                <td>@item.Itch</td>
+                                                <td>@item.Pain</td>
+                                                <td>@item.Cont</td>
+                                                <td>@item.Additional</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="divsag">
+                    <img src="" loading="lazy" alt="" class="logo2" />
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
 </body>
 </html>

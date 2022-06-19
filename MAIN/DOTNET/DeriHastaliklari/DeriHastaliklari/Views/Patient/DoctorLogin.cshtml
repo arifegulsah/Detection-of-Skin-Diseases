@@ -2,46 +2,58 @@
   Layout = null;
 }
 <!DOCTYPE html>
-<html> 
-  <head>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link href = "~/css/docstyle.css" rel = "stylesheet" type = "text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
+    <link href = "~/css/docstyle.css" rel = "stylesheet" type = "text/css">
 
-    <title>Doktor Giriş</title> 
-  </head>
-  
-  <body> 
-    <h1>DOKTOR GİRİŞ</h1>
+<title>Doktor Giriş</title>
+</head>
 
-    <div class = "rectangle"></div>
+<body>
+        <div class="navbar">
+            <a href= "/Home/Index/">
+            <img src="~/images/logo.png" class="logo" >
+            </a>
+        </div>
 
-    <div class = "login-box">
-      <div class = "box"> 
-          <form class="#" method="post">
+        <div class = "row" >
+            <div class="col-1">
+                <h1>DOKTOR GİRİŞ</h1>
+            </div>
 
-              <div class = "col-md-12">
+            <div class="col-2">
+                <div class="rectangle">
 
-                  <div class="col-md-6 textbox">
-                      <label>Kullanıcı Adı:</label>
-                      <input type = "text" class="name" name="Username" required="" >
-                  </div>
+                    <div class="login-box">
+                         <form class="#" method="post">
+                        <div class="mail-box">
+                            <label> Kullanıcı adı:</label>
+                            <input type="text" class="name" name="Username" required="" >
+                        </div>
+                        <div class="pass-box">
+                            <label>Parola:</label>
+                            <input type = "password" class="name" name="Password" required="">
+                        </div>
 
-                  <div class="col-md-6 textbox">
-                      <label>Parola:</label>
-                      <input type = "password" class="name" name="Password" required="">
-                  </div>
-              </div>
+                    
+                        <input class= "btn" type = "submit" name="" value="GİRİŞ">
+                        <span class="alert-danger" style="color: red;">@ViewData["warning"]</span>
+                      </form> 
+                        <input class= "bilgibtn"type = "button" name="" value="Bilgi işlem ile iletişime geç">
 
-              <input class= "btn" type = "submit" name="" value="GİRİŞ">
-        </form>
-      </div>
+                    </div>
 
-      <input class= "bilgibtn" type = "button" name="" value="Bilgi İşlem ile İletişime Geç">
+                </div>
 
-    </div>
+            </div>
+           
+        </div>
+    
+</body>
 
-  </body>
 </html>

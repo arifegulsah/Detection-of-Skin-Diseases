@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200&display=swap');
 
-*{
+* {
 	padding: 0;
 	margin: 0;
 	text-decoration: none;
 	list-style: none;
 }
 
-body{
-	font-family: "Readex Pro" ;
+body {
+	font-family: "Readex Pro";
 	height: 100vh;
 	min-height: 100vh;
 	width: 100%;
 }
 
-nav{
+nav {
 	background: #EDEDED;
 	height: 15%;
 	width: 100%;
@@ -25,7 +25,7 @@ nav{
 }
 
 
-label.logo{
+label.logo {
 	color: white;
 	font-size: 35px;
 	line-height: 80px;
@@ -34,7 +34,7 @@ label.logo{
 	float: left;
 }
 
-.navbar-btn{
+.navbar-btn {
 	margin: 25px 100px 100px 25px;
 	font-size: 20px;
 	border: 1px solid #ADD9BD;
@@ -47,16 +47,15 @@ label.logo{
 	font-style: normal;
 	transition: 0.3s ease-in;
 	opacity: .8;
-
 }
 
-.navbar-btn:hover{
-	cursor: pointer;
-	padding: 15px;
-	transition: ease-out 0.3s;
-	opacity: 1;
-	border: 1px solid #2E736E;
-}
+	.navbar-btn:hover {
+		cursor: pointer;
+		padding: 15px;
+		transition: ease-out 0.3s;
+		opacity: 1;
+		border: 1px solid #2E736E;
+	}
 
 /** LİNE DENEMESİ
 .vertical-line{
@@ -69,7 +68,7 @@ label.logo{
 
 /****** ANA BÖLGE BAŞLANGICI ******/
 
-.home{
+.home {
 	background: #EDEDED;
 	margin: 0px;
 	height: 80%;
@@ -77,23 +76,23 @@ label.logo{
 	display: inline-block;
 }
 
-.home-left{
+.home-left {
 	float: left;
-	position:absolute;
+	position: absolute;
 	top: 35%;
-  	left:25%;
-  	margin-left:-100px;
+	left: 25%;
+	margin-left: -100px;
 }
 
-.home-right{
+.home-right {
 	float: right;
-	position:absolute;
+	position: absolute;
 	top: 35%;
-  	right:25%;
-  	margin-right:-100px;
+	right: 25%;
+	margin-right: -100px;
 }
 
-.accept-btn{
+.accept-btn {
 	height: 280px;
 	width: 280px;
 	cursor: pointer;
@@ -103,16 +102,16 @@ label.logo{
 	opacity: .8;
 }
 
-.accept-btn:hover{
-	height: 300px;
-	width: 300px;
-	font-size: 36px;
-	opacity: 1;
-	border-radius: 200px;
-}
+	.accept-btn:hover {
+		height: 300px;
+		width: 300px;
+		font-size: 36px;
+		opacity: 1;
+		border-radius: 200px;
+	}
 
 
-.doctor-btn{
+.doctor-btn {
 	background: #FFA2A2;
 	box-shadow: inset 0px 4px 40px rgba(0, 0, 0, 0.25);
 	color: #D52626;
@@ -120,7 +119,7 @@ label.logo{
 	font-weight: 600;
 }
 
-.patient-btn{
+.patient-btn {
 	background: #CCC1DE;
 	box-shadow: inset 0px 4px 40px rgba(0, 0, 0, 0.25);
 	color: #733878;
@@ -128,13 +127,13 @@ label.logo{
 	font-weight: 600;
 }
 
-footer{
+footer {
 	height: 5%;
 	background: #EDEDED;
 	text-align: center;
 }
 
-.box{
+.box {
 	height: 350px;
 	width: 750px;
 	border: 1px solid black;
@@ -149,16 +148,16 @@ footer{
 	padding: 30px;
 }
 
-.baslik h1, button{
+.baslik h1, button {
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.baslik button{
+.baslik button {
 	float: right;
 }
 
-.baslik h1{
+.baslik h1 {
 	color: #469B85;
 	font-weight: 500;
 	font-size: 38px;
@@ -166,18 +165,19 @@ footer{
 	vertical-align: middle;
 	align-self: center;
 }
-.aciklama p{
+
+.aciklama p {
 	color: black;
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 30px;
 }
 
-.aciklama{
+.aciklama {
 	padding: 30px;
 }
 
-.cls-btn{
+.cls-btn {
 	background: transparent;
 	font-size: 40px;
 	border: none !important;
@@ -186,21 +186,19 @@ footer{
 	border: none;
 }
 
-.cls-btn:hover{
-	cursor: pointer;
+	.cls-btn:hover {
+		cursor: pointer;
+	}
+
+	.cls-btn i {
+		color: red;
+	}
+
+
+.about-sec {
+	position: absolute;
+	top: 25%;
+	left: 30%;
+	margin-left: -100px; /*this is half of width of your div*/
+	display: none;
 }
-
-.cls-btn i{
-	color: red;
-}
-
-
-.about-sec{
-  	position:absolute;
-  	top:25%;
-  	left:30%;  
-  	margin-left:-100px; /*this is half of width of your div*/
-  	display: none;
-}
-
-

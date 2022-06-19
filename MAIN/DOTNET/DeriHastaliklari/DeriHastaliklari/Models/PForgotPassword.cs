@@ -12,7 +12,7 @@ namespace DeriHastaliklari.Models
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
-        public int TcNo { get; set; }
+        public string TcNo { get; set; }
 
         [Required(ErrorMessage = "Lütfen boşlukları doldurunuz")]
         public string bthDay { get; set; }

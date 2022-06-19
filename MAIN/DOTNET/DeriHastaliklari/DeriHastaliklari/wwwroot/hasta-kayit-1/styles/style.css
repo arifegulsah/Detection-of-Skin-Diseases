@@ -1,5 +1,5 @@
 .body {
-    margin : 0px;
+    margin: 0px;
     padding: 0px;
     font-family: 'Readex Pro', sans-serif;
     display: -webkit-box;
@@ -14,9 +14,10 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: #ccc1de;
+    background-color: #FFA2A2;
     background-size: cover;
-  }
+}
+
 
   .logo{
     width: 100px;
@@ -54,8 +55,8 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    min-height: 450px;
-    min-width: 600px;
+    min-height: 550px;
+    min-width: 800px;
     margin-top: 48px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -104,11 +105,13 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
   }
-  
-  .divaltsag {
+
+.divaltsag {
     margin-right: 50px;
     margin-left: 0px;
-  }
+    width: 250px;
+    float: right;
+}
   
   .div-block {
     display: -webkit-box;
@@ -246,10 +249,13 @@
     margin-top: 17px;
     border-radius: 20px;
   }
-  
-  .divaltsol {
+
+.divaltsol {
     margin-top: 0px;
     margin-left: 50px;
+    width: 250px;
+    float: left;
+}
   }
   
   .logo2 {

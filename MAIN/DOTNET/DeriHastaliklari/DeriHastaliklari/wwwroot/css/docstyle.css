@@ -1,122 +1,174 @@
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     font-family: 'Readex Pro', sans-serif;
-    background: url(~\loginpages\images\doctorbg.png) no-repeat;
     background-color: #FFA2A2;
-}
-
-h1{
-  position: absolute;
-  top: 10%;
-  width:100%;
-  margin: 0 auto;
-  text-align: center;
-  color: #D52626;
-  font-size: 64px;
-}
-
-.rectangle{
-  background:#EDEDED;
-  border: 1px solid #EDEDED;
-  border-radius: 50px;
-  padding: 10px;
-  top: 30%;
-  left: 30%;
-  position: absolute;
-  width: 560px;
-  height: 360px;
-  
-}
-
-.login-box{
-  display: inline-block;
-  width: 280px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  color: #D52626;
-}
-
- .box{
-  display: inline-block;
-  width: 100%;
-  overflow: hidden;
-  font-size: 20px;
-  padding: 8px 10px;
-  margin: 8px ;
-  margin-top: 100px;
-  margin-left: -15px;
-  border: 1px solid #FFFFFF;
-  border-radius: 50px;
-  background:#FFFFFF;
- }
-
- .box input{
-  border: none;
-  outline: none;
-  background: none;
-  color: #D52626;
-  font-size: 18px;
-  width: 80%;
-  margin-left: 10px;
+    background-size: cover;
 }
 
 
- .textbox{
-  display: inline-block;
-  width: 100%;
-  overflow: hidden;
-  font-size: 20px;
-  padding: 8px 10px;
-  margin: 8px ;
-  margin-left: -15px;
-  border: 1px solid #FFFFFF;
-  border-radius: 50px;
-  background:#FFFFFF;
-  
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    cursor: pointer;
+    margin: 30px 20px 20px 20px;
+}
+
+    .logo:hover {
+        width: 120px;
+        cursor: pointer;
+        /* margin-left: -5px; */
+        transition: width 0.5s;
+    }
+
+.row {
+    display: flexbox;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px 0;
+}
+
+.col-1 {
+    flex-basis: 40%;
+    position: relative;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+h1 {
+    font-size: 54px;
+    font-weight: 100;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #D52626;
+    margin-top: -150px;
+    margin-bottom: -100px;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.col-2 {
+    position: relative;
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.rectangle {
+    position: absolute;
+    background: #EDEDEE;
+    border: 1px solid #EDEDED;
+    border-radius: 30px;
+    padding: 10px;
+    top: 30%;
+    left: 30%;
+    width: 560px;
+    height: 360px;
+    z-index: -1;
+    top: 55%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    padding-top: 20px;
+    margin-top: 140px;
+    margin-bottom: -10px;
+    margin-right: 80px;
+}
+
+.login-box {
+    display: inline-block;
+    width: 280px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #D52626;
+}
+
+.mail-box {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px;
+    margin-top: 100px;
+    margin-left: -10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    background: #FFFFFF;
 }
 
 
-.textbox input{
-  border: none;
-  outline: none;
-  background: none;
-  color: #D52626;
-  font-size: 18px;
-  width: 80%;
-  float: left;
-  margin-left: 10px;
+    .mail-box input {
+        display: inline-block;
+        border: none;
+        outline: none;
+        background: none;
+        color: #D52626;
+        font-size: 20px;
+        width: 200%;
+        margin-left: 5px;
+    }
+
+.pass-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px;
+    margin-left: -10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    background: #FFFFFF;
 }
 
-.btn{
-  
-  width: 420px;
-  height: 48px;
-  background: #D52626;
-  border: 2px solid #D52626;
-  color: #FFFFFF;
-  font-size: 24px;
-  cursor: pointer;
-  margin-top: 10px;
-  margin-left: -70px;
-  border-radius: 50px;
+    .pass-box input {
+        display: inline-block;
+        border: none;
+        outline: none;
+        background: none;
+        color: #D52626;
+        font-size: 20px;
+        width: 100%;
+        margin-left: 10px;
+    }
+
+.btn {
+    width: 420px;
+    height: 48px;
+    background: #D52626;
+    border: 2px solid #D52626;
+    color: #FFFFFF;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: -70px;
+    border-radius: 30px;
 }
 
 
-
-.bilgibtn{
-  width: 275px;
-  height: 48px;
-  background: #EDEDED;
-  border: 2px solid #EDEDED;
-  color: #D52626;
-  font-size: 18px;
-  cursor: pointer;
-  margin-top: 20px;
-  
-  
+.bilgibtn {
+    width: 260px;
+    height: 48px;
+    background: #EDEDED;
+    border: 2px solid #EDEDED;
+    color: #D52626;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
 }
-
-
