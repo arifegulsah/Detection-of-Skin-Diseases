@@ -1,0 +1,3 @@
+resize_shape: [256, 303] ## TRAINING SHAPE
+targets: ["0","1","2","3"]
+model_path: "../model.h5"
