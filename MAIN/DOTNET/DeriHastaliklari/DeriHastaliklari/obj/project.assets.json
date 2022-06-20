@@ -7806,19 +7806,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Berkan\\.nuget\\packages\\": {}
+    "C:\\Users\\arife\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Berkan\\source\\repos\\DeriHastaliklari\\DeriHastaliklari\\DeriHastaliklari.csproj",
+      "projectUniqueName": "C:\\Users\\arife\\Documents\\Github Clonelarım\\Detection of Skin Diseases\\Detection-of-Skin-Diseases\\MAIN\\DOTNET\\DeriHastaliklari\\DeriHastaliklari\\DeriHastaliklari.csproj",
       "projectName": "DeriHastaliklari",
-      "projectPath": "C:\\Users\\Berkan\\source\\repos\\DeriHastaliklari\\DeriHastaliklari\\DeriHastaliklari.csproj",
-      "packagesPath": "C:\\Users\\Berkan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Berkan\\source\\repos\\DeriHastaliklari\\DeriHastaliklari\\obj\\",
+      "projectPath": "C:\\Users\\arife\\Documents\\Github Clonelarım\\Detection of Skin Diseases\\Detection-of-Skin-Diseases\\MAIN\\DOTNET\\DeriHastaliklari\\DeriHastaliklari\\DeriHastaliklari.csproj",
+      "packagesPath": "C:\\Users\\arife\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\arife\\Documents\\Github Clonelarım\\Detection of Skin Diseases\\Detection-of-Skin-Diseases\\MAIN\\DOTNET\\DeriHastaliklari\\DeriHastaliklari\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Berkan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\arife\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

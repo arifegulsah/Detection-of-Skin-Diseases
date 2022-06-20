@@ -40,7 +40,7 @@ y = datam.iloc[:,1];
 print(y.unique());
 
 
-"""
+
 #birden fazla imageı plotluyor
 def show_images(images, titles = None, show_size = False):
     '''Plots many images from the given list of np.array images'''
@@ -53,7 +53,7 @@ def show_images(images, titles = None, show_size = False):
         else:
             show_image(image, ax = ax[i], title = None, show_size = show_size)
     plt.show()
-"""
+
 
 #fotoğrafların resize edilmesi, en uygun widht height hesaplanmalı
 
@@ -132,7 +132,7 @@ f = r'../Test_Data/photos'
 for file in os.listdir(f):
     f_img = f+"/"+file
     img = Image.open(f_img)
-    img = img.resize((151, 128))
+    img = img.resize((303, 256))
     #img = img.resize((IDEAL_WIDTH, IDEAL_HEIGHT))
     img = img.convert('RGB')
     img.save(f_img)
@@ -186,32 +186,30 @@ from tensorflow.keras.optimizers import SGD
 
 
 model = Sequential()
-model.add(Conv2D(256,(3,3),padding="same", activation="relu", input_shape=((128, 151, 3))))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(64,(3,3),padding="same", activation="relu", input_shape=((128, 151, 3))))
+#model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(BatchNormalization())
 
 #model.add(Dropout(0.2))
 
-model.add(Conv2D(128, (3,3), padding="same", activation="relu"))
-model.add(Conv2D(128, (3,3), padding="same", activation="relu"))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(32, (3,3), padding="same", activation="relu"))
+model.add(Conv2D(32, (3,3), padding="same", activation="relu"))
+#model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(BatchNormalization())
 
 #model.add(Dropout(0.2))
 
-model.add(Conv2D(256, (3,3), padding="same", activation="relu"))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(64, (3,3), padding="same", activation="relu"))
+#model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(BatchNormalization())
-model.add(Dropout(0.2))
 
-#model.add(Dropout(0.4))
 
 model.add(Flatten())
-model.add(Dense(256,activation="relu"))
+model.add(Dense(64,activation="relu"))
 #model.add(Dropout(0.2))
-model.add(Dense(128,activation="relu"))
+model.add(Dense(32,activation="relu"))
 #model.add(Dropout(0.4))
-#model.add(Dense(64,activation="relu"))
+model.add(Dense(16,activation="relu"))
 model.add(Dropout(0.3))
 
 model.add(Dense(4, activation="softmax"))
@@ -221,9 +219,9 @@ model.summary()
 print(Xtrain[1].shape)
 
 
-model.compile(optimizer=SGD(lr=0.000001, momentum=0.09), loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='Adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-#model.compile(loss='binary_crossentropy', optimizer='adam', metrics = ['accuracy'])
+#model.compile(loss='binary_crossentropy', optimizer='adam', optimizer=SGD(lr=0.000001 metrics = ['accuracy'])
 
 
 #Xtrain = np.asarray(Xtrain).astype('float32')
@@ -281,41 +279,8 @@ print(classification_report(ytest, y_pred))
 
 
 
-model2 = Sequential()
-model2.add(Conv2D(32, kernel_size = (3, 3), activation='relu', input_shape=(128, 151, 3)))
-model2.add(MaxPooling2D(pool_size=(2,2)))
-model2.add(BatchNormalization())
-model2.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
-model2.add(MaxPooling2D(pool_size=(2,2)))
-model2.add(BatchNormalization())
-model2.add(Conv2D(96, kernel_size=(3,3), activation='relu'))
-model2.add(MaxPooling2D(pool_size=(2,2)))
-model2.add(BatchNormalization())
-model2.add(Conv2D(96, kernel_size=(3,3), activation='relu'))
-model2.add(MaxPooling2D(pool_size=(2,2)))
-model2.add(BatchNormalization())
-model2.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
-model2.add(MaxPooling2D(pool_size=(2,2)))
-model2.add(BatchNormalization())
-model2.add(Dropout(0.2))
-model2.add(Flatten())
-model2.add(Dense(256, activation='relu'))
-model2.add(Dropout(0.2))
-model2.add(Dense(128, activation='relu'))
-model2.add(Dense(4, activation = 'softmax'))
 
-
-model2.compile(loss='binary_crossentropy', optimizer='adam', metrics = ['accuracy'])
-
-model2.fit(Xtrain,ytrain, batch_size = 50, epochs = 2, verbose = 1)
-
-
-
-
-
-
-
-
+#GRID SEARCH KISMI
 
 
 
@@ -383,50 +348,3 @@ optimizer='rmsprop',
 Test loss: 2.5285251140594482
 Test accuracy: 0.31578946113586426
 """
-
-
-
-y_pred = model.predict(Xtest)
-
-
-maxpredicts = []
-for element in y_pred:
-    temp = np.argmax(element)
-    maxpredicts.append(temp)
-    
-y_pred = np.array(maxpredicts)    
-
-
-np.argmax(y_pred[7])
-
-print(y_pred)
-
-
-
-## Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(ytest, y_pred)
-
-
-
-
-y_test_arg=np.argmax(ytest,axis=1)
-Y_pred = np.argmax(model.predict(Xtest),axis=1)
-print('Confusion Matrix')
-print(confusion_matrix(y_test_arg, Y_pred))
-
-
-from sklearn.metrics import classification_report
-
-
-
-print(classification_report(ytest, y_pred))
-
-
-
-
-
-
-
-
-
